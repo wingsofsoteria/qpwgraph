@@ -114,7 +114,10 @@ protected slots:
 
 	// Options/settings dialog accessor.
 	void graphOptions();
-
+	
+	//appearance editing menu
+	void editAppearance();
+	
 	// Patchbay menu slots.
 	void patchbayNew();
 	void patchbayOpen();

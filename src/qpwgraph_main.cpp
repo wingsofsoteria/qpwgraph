@@ -22,6 +22,7 @@
 #include "qpwgraph.h"
 #include "qpwgraph_main.h"
 
+#include "qpwgraph_appearance.h"
 #include "qpwgraph_config.h"
 
 #include "qpwgraph_pipewire.h"
@@ -328,6 +329,10 @@ qpwgraph_main::qpwgraph_main (
 	QObject::connect(m_ui.editSearchItemAction,
 		SIGNAL(triggered(bool)),
 		m_ui.graphCanvas, SLOT(searchItem()));
+
+	QObject::connect(m_ui.editAppearanceAction, 
+		SIGNAL(triggered(bool)),
+		SLOT(editAppearance()));
 
 	QObject::connect(m_ui.viewMenubarAction,
 		SIGNAL(triggered(bool)),
@@ -1949,6 +1954,10 @@ void qpwgraph_main::closeQuit (void)
 #endif
 }
 
+void qpwgraph_main::editAppearance (void)
+{
+	qpwgraph_appearance(this).exec();
+}
 
 // Session management handler (eg. logoff)
 void qpwgraph_main::commitData ( QSessionManager& sm )

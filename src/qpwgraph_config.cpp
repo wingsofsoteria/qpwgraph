@@ -29,7 +29,7 @@
 #include <QFileInfo>
 
 #include <QComboBox>
-
+#include <QApplication>
 
 // Local constants.
 static const char *GeometryGroup    = "/GraphGeometry";
@@ -57,6 +57,11 @@ static const char *PatchbayAutoDisconnectKey = "/AutoDisconnect";
 static const char *PatchbayRecentFilesKey = "/RecentFiles";
 static const char *PatchbayToolbarKey = "/Toolbar";
 static const char *PatchbayQueryQuitKey = "/QueryQuit";
+static const char *AppearanceGroup  = "/Appearance";
+static const char *AppearanceFontNameKey = "/FontFamilyName";
+static const char *AppearanceFontSizeKey = "/FontPointSize";
+static const char *AppearanceFontWeightKey = "/FontWeight";
+static const char *AppearanceFontItalicKey = "/FontIsItalic";
 
 #ifdef CONFIG_SYSTEM_TRAY
 static const char *SystemTrayGroup  = "/SystemTray";
@@ -110,7 +115,11 @@ qpwgraph_config::qpwgraph_config ( QSettings *settings, bool owner )
 		m_alsaseq_enabled(true),
 		m_start_minimized(false),
 		m_filter_enabled(false),
-		m_filter_dirty(false)
+		m_filter_dirty(false),
+		m_font_family_name(QApplication::font().family()),
+		m_font_is_italic(false),
+		m_font_weight(400),
+		m_font_point_size(12)
 {
 }
 
@@ -563,7 +572,14 @@ bool qpwgraph_config::restoreState ( QMainWindow *widget )
 		return false;
 
 	widget->restoreState(layout_state);
-
+	QFont defaultFont = QApplication::font();
+	m_settings->beginGroup(AppearanceGroup);
+	m_font_family_name = m_settings->value(AppearanceFontNameKey, defaultFont.family()).toString();
+	m_font_point_size = m_settings->value(AppearanceFontSizeKey, defaultFont.pointSize()).toInt();
+	m_font_is_italic = m_settings->value(AppearanceFontItalicKey, defaultFont.italic()).toBool();
+	m_font_weight = m_settings->value(AppearanceFontWeightKey, defaultFont.weight()).toInt();
+	m_settings->endGroup();
+	QApplication::setFont(QFont(m_font_family_name, m_font_point_size, m_font_weight, m_font_is_italic));
 	return true;
 }
 
@@ -627,6 +643,13 @@ bool qpwgraph_config::saveState ( QMainWindow *widget ) const
 	m_settings->setValue('/' + widget->objectName(), layout_state);
 	m_settings->endGroup();
 
+	m_settings->beginGroup(AppearanceGroup);
+	m_settings->setValue(AppearanceFontNameKey, m_font_family_name);
+	m_settings->setValue(AppearanceFontSizeKey, m_font_point_size);
+	m_settings->setValue(AppearanceFontItalicKey, m_font_is_italic);
+	m_settings->setValue(AppearanceFontWeightKey, m_font_weight);
+	m_settings->endGroup();
+
 	return true;
 }
 
@@ -668,6 +691,34 @@ void qpwgraph_config::saveComboBoxHistory ( QComboBox *cbox, int nlimit )
 	m_settings->beginGroup(HistoryGroup);
 	m_settings->setValue('/' + cbox->objectName(), items);
 	m_settings->endGroup();
+}
+
+void qpwgraph_config::setFontFamilyName(QString name) {
+	m_font_family_name = name;
+}
+QString qpwgraph_config::fontFamilyName() const {
+	return m_font_family_name;
+}
+
+void qpwgraph_config::setFontPointSize(int size) {
+	m_font_point_size = size;
+}
+int qpwgraph_config::fontPointSize() const {
+	return m_font_point_size;
+}
+
+void qpwgraph_config::setFontWeight(int weight) {
+	m_font_weight = weight;
+}
+int qpwgraph_config::fontWeight() const {
+	return m_font_weight;
+}
+
+void qpwgraph_config::setFontIsItalic(bool italic) {
+	m_font_is_italic = italic;
+}
+bool qpwgraph_config::fontIsItalic() const {
+	return m_font_is_italic;
 }
 
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>qpwgraph_appearance</class>
+ <widget class="QDialog" name="qpwgraph_appearance">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>540</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>540</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Appearance</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="qpwgraph.qrc">
+    <normaloff>:/images/qpwgraph.svg</normaloff>:/images/qpwgraph.svg</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QTabWidget" name="AppearanceTabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="FontsTabPage">
+      <attribute name="title">
+       <string>Fonts</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLineEdit" name="FontSearchBox">
+         <property name="placeholderText">
+          <string>Search fonts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="FontList"/>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="FontDisplayTextBox">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>The quick brown fox jumps over the lazy dog</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QSlider" name="FontSizeSlider">
+           <property name="maximumSize">
+            <size>
+             <width>450</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="minimum">
+            <number>6</number>
+           </property>
+           <property name="maximum">
+            <number>36</number>
+           </property>
+           <property name="tracking">
+            <bool>true</bool>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="FontSizeBox">
+          <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>16777215</height>
+            </size>
+           </property>
+         </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="DialogButtonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="4" margin="8"/>
+ <tabstops>
+  <tabstop>AppearanceTabWidget</tabstop>
+  <tabstop>DialogButtonBox</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qpwgraph.qrc"/>
+ </resources>
+ <connections/>
+</ui>

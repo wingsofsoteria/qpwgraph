@@ -109,6 +109,8 @@
     <addaction name="separator"/>
     <addaction name="editSearchItemAction"/>
     <addaction name="editRenameItemAction"/>
+    <addaction name="separator"/>
+    <addaction name="editAppearanceAction"/>
    </widget>
    <widget class="QMenu" name="viewMenu">
     <property name="title">
@@ -568,6 +570,20 @@
    </property>
    <property name="statusTip">
     <string>Manage current patchbay</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+  </action>
+  <action name="editAppearanceAction">
+   <property name="text">
+    <string>&amp;Appearance...</string>
+   </property>
+   <property name="toolTip">
+    <string>Appearance</string>
+   </property>
+   <property name="statusTip">
+    <string>Manage appearance settings</string>
    </property>
    <property name="shortcut">
     <string/>

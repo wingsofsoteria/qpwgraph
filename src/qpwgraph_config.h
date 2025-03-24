@@ -140,6 +140,19 @@ public:
 	void loadComboBoxHistory(QComboBox *cbox, int nlimit = 8);
 	void saveComboBoxHistory(QComboBox *cbox, int nlimit = 8);
 
+	void setFontFamilyName(QString name);
+	QString fontFamilyName() const;
+
+	void setFontPointSize(int size);
+	int fontPointSize() const;
+	
+	void setFontWeight(int weight);
+	int fontWeight() const;
+
+	void setFontIsItalic(bool italic);
+	bool fontIsItalic() const;
+
+
 private:
 
 	// Instance variables.
@@ -178,6 +191,11 @@ private:
 	bool        m_filter_dirty;
 
 	bool        m_start_minimized;
+
+	QString		m_font_family_name;
+	int			m_font_point_size;
+	int  		m_font_weight;
+	bool		m_font_is_italic;
 };
 
 

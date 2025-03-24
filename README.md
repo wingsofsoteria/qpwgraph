@@ -10,6 +10,11 @@
 
   Upstream author: Rui Nuno Capela <rncbc@rncbc.org>.
 
+## Changes
+
+I modified this fork to include an appearance customization menu for font changing  
+For anyone interested in using this fork be aware that consistent maintanence is NOT GUARANTEED  
+
 ## Prerequisites
 
   **qpwgraph** software prerequisites for building are a C++20 compiler
